@@ -1,5 +1,5 @@
 x=25
 print(x)
 print('Hello')
-print
+print('ahoj2222')
 
