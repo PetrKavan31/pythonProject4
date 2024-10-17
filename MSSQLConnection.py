@@ -17,7 +17,8 @@ class MSSQLDatabase:
             f'UID={self.username};'
             f'PWD={self.password}'
         )
-        self.connection = pyodbc.connect(connection_string)
+        self.connection = pyodbc.connect(r'Driver=SQL Server;Server=NTB-HP17;Database=sandbox;Trusted_Connection=yes;')
+        # self.connection = pyodbc.connect(connection_string)
         self.cursor = self.connection.cursor()
         print("Připojeno k databázi.")
 
@@ -44,13 +45,16 @@ database = 'testDB'  # Název vaší databáze
 db = MSSQLDatabase(server, username, password, database)
 db.connect()
 
+for row in db.cursor.execute("select FirstName, LastName from Students"):
+    print(row.FirstName, row.LastName)
+
 # Vytvoření uložených procedur
-create_procedures_query = '''
+# create_procedures_query = '''
+# SELECT * FROM STUDENTS;
+# '''
 
-'''
 
-
-db.execute_query(create_procedures_query)
+# db.execute_query(create_procedures_query)
 
 # Odpojení od databáze
 db.disconnect()

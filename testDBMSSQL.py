@@ -1,17 +1,8 @@
 import pyodbc
 
-# Přihlašovací údaje k databázi
-server = 'testmiro.database.windows.net'  # Např. 'localhost' nebo 'your_server.database.windows.net'
-username = 'miro'  # Vaše uživatelské jméno
-password = 'Ostrava10.'  # Vaše heslo
 
 # Připojení k MS SQL Serveru
-connection_string = (
-    f'DRIVER={{ODBC Driver 17 for SQL Server}};'
-    f'SERVER={server};'
-    f'UID={username};'
-    f'PWD={password}'
-)
+connection_string = r'Driver=SQL Server;Server=NTB-HP17;Database=sandbox;Trusted_Connection=yes;'
 conn = pyodbc.connect(connection_string)
 conn.autocommit = True
 cursor = conn.cursor()
@@ -25,13 +16,7 @@ cursor.close()
 conn.close()
 
 # Připojení k nově vytvořené databázi "Sports Store"
-connection_string = (
-    f'DRIVER={{ODBC Driver 17 for SQL Server}};'
-    f'SERVER={server};'
-    f'DATABASE=SportsStore;'
-    f'UID={username};'
-    f'PWD={password}'
-)
+connection_string = r'Driver=SQL Server;Server=NTB-HP17;Database=SportsStore;Trusted_Connection=yes;'
 conn = pyodbc.connect(connection_string)
 cursor = conn.cursor()
 
